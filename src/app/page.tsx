@@ -4,6 +4,7 @@ import VideoPreview from "@/components/Video/Video";
 
 import { useEffect, useState } from "react";
 import { REQUEST_VIDEO_API } from "../../private/constants";
+import VideoPlayer from "@/components/VideoPlayer/VideoPlayer";
 
 export interface VideoData {
   created_at: string;
@@ -17,9 +18,20 @@ export interface VideoData {
 
 export default function Home() {
   const user_name = "john_doe";
+  const testingVideo = {
+    created_at: "2024-05-20T22:02:10.274188+00:00",
+    video_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    user_id: "john_doe",
+    description: "One more test",
+    title: "Test02",
+    num_comments: 1,
+    id: "UneeWGoxerzXGqwJphey",
+  };
 
   const [videoData, setVideoData] = useState<VideoData[]>();
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const [activeVideo, setActiveVideo] = useState<VideoData>(testingVideo);
 
   useEffect(() => {
     const fetchAllVideos = async () => {
@@ -45,14 +57,21 @@ export default function Home() {
         />
       </section>
 
-      <section className="py-5">
-        {videoData && (
-          <div>
-            {videoData.map((data) => {
-              return <VideoPreview {...data} key={data.id} />;
-            })}
+      <section className="py-5 flex item-center justify-between gap-5">
+        <div className="w-3/4 bg-slate-800 rounded-lg">
+          <div className="flex flex-col">
+            <VideoPlayer {...activeVideo} />
           </div>
-        )}
+        </div>
+        <div className="w-1/4">
+          {videoData && (
+            <div>
+              {videoData.map((data) => {
+                return <VideoPreview {...data} key={data.id} />;
+              })}
+            </div>
+          )}
+        </div>
       </section>
     </main>
   );
