@@ -54,9 +54,6 @@ export default function Home() {
     fetchAllVideos(activeUser);
   }, [activeUser]);
 
-  console.log(videoData);
-  console.log(searchUser);
-
   return (
     <main className="flex flex-col min-h-screen p-12">
       <section>
@@ -68,7 +65,7 @@ export default function Home() {
         <div className="w-1/2 flex items-center">
           <input
             type="text"
-            className="w-full rounded-lg h-8 bg-slate-800 p-2 text-sm font-italics"
+            className="w-full rounded-lg bg-slate-800 p-3 text-sm font-italics"
             placeholder="Search for videos by entering the creator's name..."
             value={searchUser}
             onChange={(e) => setSearchUser(e.target.value)}
@@ -82,12 +79,21 @@ export default function Home() {
         </div>
       </section>
 
+      <section>
+        <button className="bg-yellow-600 p-2 rounded-lg cursor-pointer hover:bg-yellow-800">
+          Create Video
+        </button>
+      </section>
+
       <section className="py-5 flex item-center justify-between gap-5">
         {/* Video player and video list */}
         <section className="w-3/4 bg-slate-800 rounded-lg">
           {activeVideo ? (
             <div className="flex flex-col">
-              <VideoPlayer {...activeVideo} />
+              <VideoPlayer
+                activeVideoData={activeVideo}
+                activeUser={activeUser}
+              />
             </div>
           ) : (
             <div className="h-full flex flex-col items-center justify-center">
