@@ -5,6 +5,8 @@ import dateConvertor from "@/helper/DateConvertor";
 import { useEffect, useState } from "react";
 import { REQUEST_COMMENT_API } from "../../../private/constants";
 import YouTube from "react-youtube";
+import makeNameReadable from "@/helper/GetUsername";
+import convertToEmbed from "@/helper/ConvertToEmbed";
 
 interface CommentData {
   content: string;
@@ -15,7 +17,6 @@ interface CommentData {
 }
 
 const VideoPlayer = (props: VideoData) => {
-  console.log(props);
   const [comments, setComments] = useState<CommentData[]>();
 
   useEffect(() => {
@@ -27,25 +28,16 @@ const VideoPlayer = (props: VideoData) => {
     fetchComments();
   }, [props.id]);
 
-  console.log(comments);
-
   return (
     <div>
-      <div className="flex flex-col">
-        <video controls className="w-full rounded-t-lg">
-          <source src={props.video_url} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        {/* <iframe
-          src="https://www.youtube.com/embed/E7wJTI-1dvQ"
+      <div className="w-full h-full flex flex-col">
+        <iframe
+          src={convertToEmbed(props.video_url)}
           allow="autoplay; encrypted-media"
-          allowfullscreen={true}
+          allowFullScreen
           title="video"
-          className="w-full rounded-t-lg"
-        /> */}
-        {/* <div className="w-full">
-          <YouTube videoId="E7wJTI-1dvQ" className="w-full rounded-t-lg" />
-        </div> */}
+          className="w-full h-96 rounded-t-lg"
+        />
       </div>
       <div className="flex flex-col justify-start p-5">
         {/* Video title, author and date/ time published */}
@@ -78,7 +70,9 @@ const VideoPlayer = (props: VideoData) => {
                 key={index}
                 className="bg-slate-900 p-4 rounded-lg my-2 w-1/2"
               >
-                <span className="text-sm font-semibold">{comment.user_id}</span>
+                <span className="text-sm font-semibold">
+                  {makeNameReadable(comment.user_id)}
+                </span>
                 <span className="text-sm text-gray-500">
                   {" "}
                   {dateConvertor({ date: comment.created_at })}
