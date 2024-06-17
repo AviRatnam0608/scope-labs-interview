@@ -35,7 +35,7 @@ const VideoPlayer = ({ activeVideoData, activeUser }: VideoPlayerData) => {
       setComments(data["comments"]);
     };
     fetchComments();
-  }, [activeVideoData.id]);
+  }, [comments]);
 
   const postComment = async (comment: string) => {
     const response = await fetch(REQUEST_COMMENT_POST_API, {
@@ -51,6 +51,7 @@ const VideoPlayer = ({ activeVideoData, activeUser }: VideoPlayerData) => {
     });
     const data = await response.json();
     setComments([...comments, data]);
+    setNewComment("");
   };
 
   return (
@@ -116,10 +117,10 @@ const VideoPlayer = ({ activeVideoData, activeUser }: VideoPlayerData) => {
                   className="bg-slate-900 p-4 rounded-lg my-2 w-1/2"
                 >
                   <span className="text-sm font-semibold">
-                    {makeNameReadable(comment.user_id)}{" "}
+                    {makeNameReadable(comment?.user_id)}{" "}
                   </span>
                   <span className="text-sm text-gray-500">
-                    {dateConvertor({ date: comment.created_at })}
+                    {dateConvertor({ date: comment?.created_at })}
                   </span>
                   <p className="text-sm mt-2">{comment.content}</p>
                 </div>
