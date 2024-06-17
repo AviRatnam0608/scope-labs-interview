@@ -26,7 +26,7 @@ const DisplayName = ({ activeUser, setActiveUser }: DisplayNameProps) => {
   };
 
   return (
-    <h1 className="flex items-center gap-2 text-lg font-semibold">
+    <h1 className="flex items-center gap-2 text-lg font-semibold text-slate-800">
       <span>Welcome, </span>
       {isEditing ? (
         <input
@@ -34,7 +34,7 @@ const DisplayName = ({ activeUser, setActiveUser }: DisplayNameProps) => {
           value={editedName}
           onChange={handleNameChange}
           onBlur={handleBlur}
-          className="border rounded px-2 bg-slate-800 text-sm h-8 w-1/2"
+          className="border rounded px-2 bg-slate-200 text-sm h-8 w-1/2"
           autoFocus
         />
       ) : (
