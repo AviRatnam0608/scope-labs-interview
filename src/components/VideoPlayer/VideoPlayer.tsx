@@ -1,10 +1,8 @@
 import { VideoData } from "@/app/page";
 import Divider from "../Divider/Divider";
-import { FaRegUser } from "react-icons/fa";
 import dateConvertor from "@/helper/DateConvertor";
 import { useEffect, useState } from "react";
 import { REQUEST_COMMENT_API } from "../../../private/constants";
-import YouTube from "react-youtube";
 import makeNameReadable from "@/helper/GetUsername";
 import convertToEmbed from "@/helper/ConvertToEmbed";
 
@@ -42,12 +40,14 @@ const VideoPlayer = (props: VideoData) => {
       <div className="flex flex-col justify-start p-5">
         {/* Video title, author and date/ time published */}
         <div>
-          <h2 className="text-2xl font-semibold my-1">{props.title}</h2>
-          <p className="text-sm flex gap-2 items-center">
-            <FaRegUser /> {props.user_id}
-          </p>
+          <div className="flex items-center gap-2">
+            <h2 className="text-2xl font-semibold my-1">{props.title}</h2>
+            <p className="text-md flex gap-2 items-center text-slate-500">
+              {props.user_id}
+            </p>
+          </div>
           <div className="text-sm text-gray-500 mt-2">
-            {dateConvertor({ date: props.created_at })}
+            Uploaded: {dateConvertor({ date: props.created_at })}
           </div>
         </div>
 
@@ -74,7 +74,6 @@ const VideoPlayer = (props: VideoData) => {
                   {makeNameReadable(comment.user_id)}
                 </span>
                 <span className="text-sm text-gray-500">
-                  {" "}
                   {dateConvertor({ date: comment.created_at })}
                 </span>
                 <p className="text-sm mt-2">{comment.content}</p>

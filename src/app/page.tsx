@@ -35,7 +35,7 @@ export default function Home() {
 
   const [videoData, setVideoData] = useState<VideoData[]>();
   // const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [activeVideo, setActiveVideo] = useState<VideoData>(testingVideo);
+  const [activeVideo, setActiveVideo] = useState<VideoData | null>(null);
 
   const [activeUser, setActiveUser] = useState<string>(user_name);
   const [activeUserVideos, setActiveUserVideos] = useState<VideoData[]>([]);
@@ -56,8 +56,6 @@ export default function Home() {
 
   console.log(videoData);
   console.log(searchUser);
-
-  // "michelle_reichert" => "Michelle Reichert"
 
   return (
     <main className="flex flex-col min-h-screen p-12">
@@ -87,9 +85,24 @@ export default function Home() {
       <section className="py-5 flex item-center justify-between gap-5">
         {/* Video player and video list */}
         <section className="w-3/4 bg-slate-800 rounded-lg">
-          <div className="flex flex-col">
-            <VideoPlayer {...activeVideo} />
-          </div>
+          {activeVideo ? (
+            <div className="flex flex-col">
+              <VideoPlayer {...activeVideo} />
+            </div>
+          ) : (
+            <div className="h-full flex flex-col items-center justify-center">
+              <h2 className="flex items-center gap-2 text-lg font-semibold">
+                <FaExclamationTriangle className="text-yellow-500" />
+                No video available
+              </h2>
+              <p className="text-sm text-gray-500">
+                Please select a video from the list on the right
+              </p>
+              <p className="text-sm text-gray-500">
+                Or search for one with the search bar above
+              </p>
+            </div>
+          )}
         </section>
 
         {/* Video list */}
@@ -105,7 +118,13 @@ export default function Home() {
             {videoData?.length !== 0 && searchUser ? (
               <div>
                 {videoData?.map((data) => {
-                  return <VideoPreview {...data} key={data.id} />;
+                  return (
+                    <VideoPreview
+                      videoData={data}
+                      key={data.id}
+                      setActiveVideo={setActiveVideo}
+                    />
+                  );
                 })}
               </div>
             ) : (
@@ -130,7 +149,13 @@ export default function Home() {
             {activeUserVideos?.length !== 0 ? (
               <div>
                 {activeUserVideos?.map((data) => {
-                  return <VideoPreview {...data} key={data.id} />;
+                  return (
+                    <VideoPreview
+                      videoData={data}
+                      key={data.id}
+                      setActiveVideo={setActiveVideo}
+                    />
+                  );
                 })}
               </div>
             ) : (
