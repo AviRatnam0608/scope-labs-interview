@@ -55,7 +55,7 @@ export default function Home() {
   }, [activeUser]);
 
   return (
-    <main className="flex flex-col min-h-screen p-12">
+    <main className="flex flex-col min-h-screen p-12 bg-white">
       <section>
         <Navbar />
       </section>
@@ -65,13 +65,13 @@ export default function Home() {
         <div className="w-1/2 flex items-center">
           <input
             type="text"
-            className="w-full rounded-lg bg-slate-800 p-3 text-sm font-italics"
+            className="w-full rounded-lg border border-slate-300 text-slate-800 bg-slate-200 p-3 text-sm font-italics"
             placeholder="Search for videos by entering the creator's name..."
             value={searchUser}
             onChange={(e) => setSearchUser(e.target.value)}
           />
           <button
-            className="bg-slate-800 text-white rounded-lg p-2 ml-2"
+            className="bg-primaryGreen hover:bg-secondaryGreen text-white rounded-lg p-2 ml-2"
             onClick={() => fetchAllVideos(searchUser)}
           >
             Search
@@ -80,7 +80,7 @@ export default function Home() {
       </section>
 
       <section>
-        <button className="bg-yellow-600 p-2 rounded-lg cursor-pointer hover:bg-yellow-800">
+        <button className="bg-primaryGreen p-2 rounded-lg cursor-pointer hover:bg-secondaryGreen">
           Create Video
         </button>
       </section>
@@ -113,10 +113,10 @@ export default function Home() {
 
         {/* Video list */}
         <section className="w-1/4">
-          <h2 className="text-lg font-semibold">Video List</h2>
+          <h2 className="text-lg text-slate-800 font-semibold">Video List</h2>
           <Divider />
           <div>
-            <h2 className="text-md font-semibold">
+            <h2 className="text-md text-slate-800 font-semibold">
               Search Results ({videoData?.length ? videoData?.length : 0})
             </h2>
           </div>
@@ -135,7 +135,7 @@ export default function Home() {
               </div>
             ) : (
               <div>
-                <p className="text-sm text-gray-500 bg-slate-800 p-3 rounded-lg my-2 flex items-center gap-2">
+                <p className="text-sm text-gray-500 bg-slate-200 border border-slate-300 p-3 rounded-lg my-2 flex items-center gap-2">
                   <FaExclamationTriangle className="text-yellow-500" />
                   No videos found for user
                   <span className="text-slate-500 text-decoration-line: underline">
@@ -149,7 +149,9 @@ export default function Home() {
 
           {/* Active user videos */}
           <div>
-            <h2 className="text-md font-semibold">Your videos</h2>
+            <h2 className="text-md font-semibold text-slate-800">
+              Your videos
+            </h2>
           </div>
           <div className="my-2">
             {activeUserVideos?.length !== 0 ? (

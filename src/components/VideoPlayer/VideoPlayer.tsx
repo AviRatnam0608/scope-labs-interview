@@ -8,6 +8,7 @@ import {
 } from "../../../private/constants";
 import makeNameReadable from "@/helper/GetUsername";
 import convertToEmbed from "@/helper/ConvertToEmbed";
+import { FaExclamationTriangle } from "react-icons/fa";
 
 interface CommentData {
   content: string;
@@ -55,24 +56,24 @@ const VideoPlayer = ({ activeVideoData, activeUser }: VideoPlayerData) => {
   };
 
   return (
-    <div>
+    <div className="bg-slate-200 border border-slate-300 rounded-lg">
       <div className="w-full h-full flex flex-col">
         <iframe
           src={convertToEmbed(activeVideoData.video_url)}
           allow="autoplay; encrypted-media"
           allowFullScreen
           title="video"
-          className="w-full h-96 rounded-t-lg"
+          className="w-full h-103 rounded-t-lg"
         />
       </div>
       <div className="flex flex-col justify-start p-5">
         {/* Video title, author and date/ time published */}
         <div>
           <div className="flex items-center gap-2">
-            <h2 className="text-2xl font-semibold my-1">
+            <h2 className="text-2xl text-slate-800 font-semibold my-1">
               {activeVideoData.title}
             </h2>
-            <p className="text-md flex gap-2 items-center text-slate-500">
+            <p className="text-md flex gap-2 items-center text-slate-800">
               {activeVideoData.user_id}
             </p>
           </div>
@@ -85,25 +86,29 @@ const VideoPlayer = ({ activeVideoData, activeUser }: VideoPlayerData) => {
 
         {/* Video description */}
         <div>
-          <p className="font-semibold ">Description</p>
-          <p className="text-sm mb-2">{activeVideoData.description}</p>
+          <p className="font-semibold text-slate-800">Description</p>
+          <p className="text-sm mb-2 text-slate-800">
+            {activeVideoData.description}
+          </p>
         </div>
 
         <Divider />
 
         {/* Comments count */}
         <div className="mt-2">
-          Comments: {activeVideoData.num_comments}
+          <span className="text-slate-800">
+            Comments: {activeVideoData.num_comments}
+          </span>
           <div className="flex gap-2 my-2">
             <input
               type="text"
               placeholder="Comment..."
-              className="w-1/2 rounded-lg bg-slate-600 p-3 text-sm font-italics"
+              className="w-1/2 rounded-lg bg-slate-600 p-3 text-sm font-italics text-white"
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
             />
             <button
-              className="bg-yellow-600 p-2 rounded-lg cursor-pointer"
+              className="bg-primaryYellow hover:bg-secondaryYellow p-2 rounded-lg cursor-pointer "
               onClick={() => postComment(newComment)}
             >
               Comment
@@ -114,7 +119,7 @@ const VideoPlayer = ({ activeVideoData, activeUser }: VideoPlayerData) => {
               comments?.map((comment, index) => (
                 <div
                   key={index}
-                  className="bg-slate-900 p-4 rounded-lg my-2 w-1/2"
+                  className="bg-slate-300 p-4 rounded-lg my-2 w-1/2 text-slate-800"
                 >
                   <span className="text-sm font-semibold">
                     {makeNameReadable(comment?.user_id)}{" "}
@@ -126,7 +131,8 @@ const VideoPlayer = ({ activeVideoData, activeUser }: VideoPlayerData) => {
                 </div>
               ))
             ) : (
-              <p className="text-sm text-gray-500 bg-slate-800 rounded-lg my-2 flex items-center gap-2">
+              <p className="text-sm text-gray-500 rounded-lg my-2 flex items-center gap-2 mt-5">
+                <FaExclamationTriangle className="text-yellow-500" />
                 No comments found. Comment to start the conversation!
               </p>
             )}
