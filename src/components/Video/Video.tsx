@@ -1,5 +1,5 @@
 import { VideoData } from "@/app/page";
-import dateConvertor from "@/helper/DateConvertor";
+import { dateConvertor, makeNameReadable } from "@/helper/helperFunctions";
 
 interface VideoPreviewProps {
   videoData: VideoData;
@@ -23,7 +23,9 @@ const VideoPreview = ({ videoData, setActiveVideo }: VideoPreviewProps) => {
         <h2 className="text-lg text-slate-800 font-semibold">
           {videoData.title}
         </h2>
-        <p className="text-sm text-slate-800">{videoData.user_id}</p>
+        <p className="text-sm text-slate-800">
+          {makeNameReadable(videoData.user_id)}
+        </p>
       </div>
       <p className="mb-2 text-sm text-slate-800">{videoData.description}</p>
       <div className="text-sm text-gray-500 mt-2">

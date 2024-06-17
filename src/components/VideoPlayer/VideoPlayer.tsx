@@ -1,14 +1,16 @@
 import { VideoData } from "@/app/page";
 import Divider from "../Divider/Divider";
-import dateConvertor from "@/helper/DateConvertor";
 import { useEffect, useState } from "react";
 import {
   REQUEST_COMMENT_API,
   REQUEST_COMMENT_POST_API,
 } from "../../../private/constants";
-import makeNameReadable from "@/helper/GetUsername";
-import convertToEmbed from "@/helper/ConvertToEmbed";
 import { FaExclamationTriangle } from "react-icons/fa";
+import {
+  makeNameReadable,
+  dateConvertor,
+  convertToEmbed,
+} from "@/helper/helperFunctions";
 
 interface CommentData {
   content: string;
@@ -74,7 +76,7 @@ const VideoPlayer = ({ activeVideoData, activeUser }: VideoPlayerData) => {
               {activeVideoData.title}
             </h2>
             <p className="text-md flex gap-2 items-center text-slate-800">
-              {activeVideoData.user_id}
+              {makeNameReadable(activeVideoData.user_id)}
             </p>
           </div>
           <div className="text-sm text-gray-500 mt-2">

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FaEdit } from "react-icons/fa";
-import makeNameReadable from "@/helper/GetUsername";
-import getUserID from "@/helper/GetUserId";
+import { makeNameReadable, getUserID } from "@/helper/helperFunctions";
 
 interface DisplayNameProps {
   activeUser: string;
