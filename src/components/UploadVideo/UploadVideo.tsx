@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useReducer } from "react";
 import { FaLock } from "react-icons/fa";
 import { REQUEST_VIDEO_POST_API } from "../../../private/constants";
 import { VideoData } from "@/app/page";
