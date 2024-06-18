@@ -45,7 +45,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchAllVideos(activeUser);
-  }, [activeUser]);
+  }, [activeUser, activeUserVideos]);
 
   return (
     <main className="flex flex-col min-h-screen p-12 bg-white">

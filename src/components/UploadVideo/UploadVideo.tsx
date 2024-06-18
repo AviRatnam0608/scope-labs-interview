@@ -4,10 +4,10 @@ import { REQUEST_VIDEO_POST_API } from "../../../private/constants";
 import { VideoData } from "@/app/page";
 
 interface VideoUploadData {
-  user_id: "string";
-  description: "string";
-  video_url: "string";
-  title: "string";
+  user_id: string;
+  description: string;
+  video_url: string;
+  title: string;
 }
 
 interface UploadVideoProps {
@@ -28,10 +28,16 @@ const UploadVideo = ({
     return { ...state, ...action };
   };
 
-  const [videoData, setVideoData] = useReducer(reducer, {} as VideoUploadData);
+  const initialVideoData: VideoUploadData = {
+    user_id: activeUser,
+    description: "",
+    video_url: "",
+    title: "",
+  };
+
+  const [videoData, setVideoData] = useReducer(reducer, initialVideoData);
 
   const handleSubmit = async () => {
-    console.log(videoData);
     const response = await fetch(REQUEST_VIDEO_POST_API, {
       method: "POST",
       headers: {
@@ -43,12 +49,9 @@ const UploadVideo = ({
       }),
     });
     const data = await response.json();
+    setVideoData(initialVideoData);
     setActiveUserVideos([...activeUserVideos, data]);
-    console.log(activeUserVideos);
-    setVideoData({});
   };
-
-  console.log("activeUser in UploadVideo", activeUser);
 
   return (
     <div className="w-full bg-slate-800 rounded-lg p-4 my-2">
