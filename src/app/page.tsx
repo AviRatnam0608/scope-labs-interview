@@ -2,7 +2,7 @@
 import Navbar from "@/components/Navbar/Navbar";
 import VideoPreview from "@/components/Video/Video";
 
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { REQUEST_VIDEO_API } from "../../private/constants";
 import VideoPlayer from "@/components/VideoPlayer/VideoPlayer";
 import DisplayName from "@/components/Displayname/Displayname";
@@ -12,6 +12,7 @@ import {
   NoVideoFoundMain,
   NoVideoFoundSide,
 } from "@/components/Novideofound/NoVideoFound";
+import UploadVideo from "@/components/UploadVideo/UploadVideo";
 
 export interface VideoData {
   created_at: string;
@@ -25,18 +26,8 @@ export interface VideoData {
 
 export default function Home() {
   const user_name = "john_doe";
-  const testingVideo = {
-    created_at: "2024-05-20T22:02:10.274188+00:00",
-    video_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    user_id: "john_doe",
-    description: "One more test",
-    title: "Test02",
-    num_comments: 1,
-    id: "UneeWGoxerzXGqwJphey",
-  };
 
   const [videoData, setVideoData] = useState<VideoData[]>();
-  // const [isLoading, setIsLoading] = useState<boolean>(false);
   const [activeVideo, setActiveVideo] = useState<VideoData | null>(null);
 
   const [activeUser, setActiveUser] = useState<string>(user_name);
@@ -81,15 +72,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section>
-        <button className="bg-primaryGreen p-2 rounded-lg cursor-pointer hover:bg-secondaryGreen">
-          Create Video
-        </button>
-      </section>
-
       <section className="py-5 flex item-center justify-between gap-5">
         {/* Video player and video list */}
-        <section className="w-3/4 bg-slate-800 rounded-lg">
+        <section className="w-3/4">
           {activeVideo ? (
             <div className="flex flex-col">
               <VideoPlayer
@@ -137,7 +122,7 @@ export default function Home() {
             </h2>
           </div>
           <div className="my-2">
-            {activeUserVideos?.length !== 0 ? (
+            {activeUser !== "" && activeUserVideos?.length !== 0 ? (
               <div>
                 {activeUserVideos?.map((data) => {
                   return (
@@ -153,6 +138,18 @@ export default function Home() {
               <NoVideoFoundSide name={makeNameReadable(activeUser)} />
             )}
           </div>
+
+          <Divider />
+          <section>
+            <h2 className="text-md font-semibold text-slate-800">
+              Upload video
+            </h2>
+            <UploadVideo
+              activeUser={activeUser}
+              activeUserVideos={activeUserVideos}
+              setActiveUserVideos={setActiveUserVideos}
+            />
+          </section>
         </section>
       </section>
     </main>

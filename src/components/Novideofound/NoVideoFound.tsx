@@ -16,7 +16,7 @@ export const NoVideoFoundSide = ({ name }: { name: string }) => {
 
 export const NoVideoFoundMain = () => {
   return (
-    <div className="h-full flex flex-col items-center justify-center">
+    <div className="h-full rounded-lg bg-slate-800 flex flex-col items-center justify-center">
       <h2 className="flex items-center gap-2 text-lg font-semibold">
         <FaExclamationTriangle className="text-yellow-500" />
         No video available
