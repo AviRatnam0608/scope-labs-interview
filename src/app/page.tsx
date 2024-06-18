@@ -2,7 +2,7 @@
 import Navbar from "@/components/Navbar/Navbar";
 import VideoPreview from "@/components/Video/Video";
 
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import { REQUEST_VIDEO_API } from "../../private/constants";
 import VideoPlayer from "@/components/VideoPlayer/VideoPlayer";
 import DisplayName from "@/components/Displayname/Displayname";
