@@ -49,8 +49,8 @@ const UploadVideo = ({
       }),
     });
     const data = await response.json();
-    setVideoData(initialVideoData);
     setActiveUserVideos([...activeUserVideos, data]);
+    setVideoData(initialVideoData);
   };
 
   return (
@@ -71,6 +71,7 @@ const UploadVideo = ({
         type="string"
         className="w-full rounded-lg border border-slate-300 text-slate-800 bg-slate-200 p-2 text-sm"
         required
+        value={videoData?.title}
         onChange={(e) => setVideoData({ title: e.target.value })}
       />
 
@@ -80,6 +81,7 @@ const UploadVideo = ({
       <textarea
         className="w-full max-h-20 rounded-lg border border-slate-300 text-slate-800 bg-slate-200 p-2 text-sm"
         required
+        value={videoData?.description}
         onChange={(e) => setVideoData({ description: e.target.value })}
       ></textarea>
 
@@ -88,6 +90,7 @@ const UploadVideo = ({
         type="string"
         className="w-full rounded-lg border border-slate-300 text-slate-800 bg-slate-200 p-2 text-sm"
         required
+        value={videoData?.video_url}
         onChange={(e) => setVideoData({ video_url: e.target.value })}
       />
 
