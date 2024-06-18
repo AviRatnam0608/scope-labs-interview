@@ -28,7 +28,9 @@ export default function Home() {
   const user_name = "john_doe";
 
   const [videoData, setVideoData] = useState<VideoData[]>();
-  const [activeVideo, setActiveVideo] = useState<VideoData | null>(null);
+  const [activeVideo, setActiveVideo] = useState<VideoData | undefined>(
+    undefined
+  );
 
   const [activeUser, setActiveUser] = useState<string>(user_name);
   const [activeUserVideos, setActiveUserVideos] = useState<VideoData[]>([]);
@@ -105,6 +107,7 @@ export default function Home() {
                       videoData={data}
                       key={data.id}
                       setActiveVideo={setActiveVideo}
+                      activeVideo={activeVideo}
                     />
                   );
                 })}
@@ -118,7 +121,7 @@ export default function Home() {
           {/* Active user videos */}
           <div>
             <h2 className="text-md font-semibold text-slate-800">
-              Your videos
+              Your videos ({activeUserVideos?.length})
             </h2>
           </div>
           <div className="my-2">
@@ -130,6 +133,7 @@ export default function Home() {
                       videoData={data}
                       key={data.id}
                       setActiveVideo={setActiveVideo}
+                      activeVideo={activeVideo}
                     />
                   );
                 })}

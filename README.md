@@ -1,4 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Overview
+
+Welcome to Learnwell! The best education app etc. etc. This app is part of the [Scope Labs](https://www.scopelabs.com/) interview process.
+
+## List of Features
+
+### 1. Show a List of Videos and Allow Users to Select a Video from the List
+
+**Approach:** Due to API constraints, I pre-fetch some videos with a default avatar for the user to watch.
+
+### 2. Allow the User to Create a New Video Object with a Title, Description, and Video URL
+
+**Approach:** Used a reducer function to easily populate a video object, which can then be sent to the server with a POST command.
+
+### 3. Comment on Videos and View Comments from Other Users
+
+**Approach:** For this (and upload video), the user can universally change their identity at any time, allowing them to view their videos, comment on videos, and upload videos as this new identity. Additionally, I fetched comments for a selected video only on selection, and not before hand for efficiency.
+
+### 4. Open Videos in Full Screen with Full Playback Functionality and
+
+### 5. Include Options for Adjusting Playback Speed and Volume
+
+**Approach:** By converting the YouTube link into an embeddable link, I was able to simply use an iframe to render the YouTube video directly into the website and use YouTube's built-in controls.
+
+A detailed run-through of the app can be found [here]().
 
 ## Getting Started
 
@@ -16,21 +40,24 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The app _is_ hosted [here](https://scope-labs-interview.vercel.app/) on vercel. But due to the API's private constraints, the API doesn't work. Well, still looks pretty.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Screenshots
 
-## Learn More
+![default landing page](image.png)
+_The default landing page_
 
-To learn more about Next.js, take a look at the following resources:
+![alt text](image-1.png)
+_Video player when video is selected. Note the highlighted video on the side_
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![alt text](image-2.png)
+_Editing user in the top left by simply clicking on the edit icon_
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![alt text](image-3.png)
+_New user videos are rendered (below) and search for lebron results in videos._
 
-## Deploy on Vercel
+![alt text](image-4.png)
+_Trying to upload gibberish youtube video; note the disabled upload button._
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![alt text](image-5.png)
+_Video uploaded succesfully!_

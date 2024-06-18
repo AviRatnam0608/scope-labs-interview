@@ -4,19 +4,28 @@ import { dateConvertor, makeNameReadable } from "@/helper/helperFunctions";
 interface VideoPreviewProps {
   videoData: VideoData;
   setActiveVideo: (video: VideoData) => void;
+  activeVideo?: VideoData;
 }
 
-const VideoPreview = ({ videoData, setActiveVideo }: VideoPreviewProps) => {
+const VideoPreview = ({
+  videoData,
+  setActiveVideo,
+  activeVideo,
+}: VideoPreviewProps) => {
   return (
     <div
       key={videoData.id}
-      className="bg-slate-200 border border-slate-300 rounded-lg p-4 mb-4 
+      className={`bg-slate-200 border  rounded-lg p-4 mb-4 
       hover:shadow-lg
       hover:border-slate-700
       cursor-pointer 
       transition 
       duration-300 
-      ease-in-out"
+      ease-in-out ${
+        activeVideo?.id === videoData.id
+          ? "border-2 border-primaryYellow"
+          : "border-slate-300"
+      }`}
       onClick={() => setActiveVideo(videoData)}
     >
       <div className="flex items-center gap-2">

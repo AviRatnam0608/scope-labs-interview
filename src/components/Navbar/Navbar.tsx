@@ -1,4 +1,4 @@
-import { FaLinkedin, FaMedium } from "react-icons/fa";
+import { FaLinkedin, FaMedium, FaExternalLinkAlt } from "react-icons/fa";
 
 const Navbar = () => {
   return (
@@ -7,11 +7,14 @@ const Navbar = () => {
       <img src="/FULL_LOGO_COLOR.png" alt="logo" className="h-10" />
       {/* <input type="text" /> */}
       <div className="flex items-center gap-4">
+        <a href="https://avinashratnam.framer.website/">
+          <FaExternalLinkAlt className="text-2xl text-slate-800 hover:text-primaryYellow hover:cursor-pointer" />
+        </a>
         <a href="https://www.linkedin.com/in/avinashratnam/">
-          <FaLinkedin className="text-4xl text-slate-800 hover:text-primaryYellow hover:cursor-pointer" />
+          <FaLinkedin className="text-3xl text-slate-800 hover:text-primaryYellow hover:cursor-pointer" />
         </a>
         <a href="https://avinashkratnam.medium.com/">
-          <FaMedium className="text-4xl text-slate-800 hover:text-primaryYellow hover:cursor-pointer" />
+          <FaMedium className="text-3xl text-slate-800 hover:text-primaryYellow hover:cursor-pointer" />
         </a>
       </div>
     </div>
