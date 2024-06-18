@@ -22,7 +22,7 @@ Welcome to Learnwell! The best education app etc. etc. This app is part of the [
 
 **Approach:** By converting the YouTube link into an embeddable link, I was able to simply use an iframe to render the YouTube video directly into the website and use YouTube's built-in controls.
 
-A detailed run-through of the app can be found [here]().
+A detailed run-through of the app can be found [here](https://www.loom.com/share/96f69ed4c1814272b82e97ae71a793b3?sid=39d9bce4-dcf8-4cee-8028-6cab1ba3ba1d).
 
 ## Getting Started
 
