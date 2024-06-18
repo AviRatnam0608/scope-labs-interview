@@ -51,10 +51,12 @@ export default function Home() {
 
   return (
     <main className="flex flex-col min-h-screen p-12 bg-white">
+      {/* Navigation bar */}
       <section>
         <Navbar />
       </section>
 
+      {/* Display name and search bar */}
       <section className="flex items-center justify-between my-3">
         <DisplayName activeUser={activeUser} setActiveUser={setActiveUser} />
         <div className="w-1/2 flex items-center">
@@ -74,8 +76,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Video player and video list */}
       <section className="py-5 flex item-center justify-between gap-5">
-        {/* Video player and video list */}
+        {/* Video player */}
         <section className="w-3/4">
           {activeVideo ? (
             <div className="flex flex-col">
@@ -144,6 +147,8 @@ export default function Home() {
           </div>
 
           <Divider />
+
+          {/* Upload video */}
           <section>
             <h2 className="text-md font-semibold text-slate-800">
               Upload video
